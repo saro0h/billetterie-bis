@@ -22,14 +22,14 @@
             {{ message }}
         {% endfor %}
 
+        <a href="{{ path('article_list') }}" class="btn btn-info pull-right" role="button">Back to the list</a>
+
         <h1>{% if 'article_new' == app.request.get('_route') %}Create{% else %}Update{% endif %} a new article</h1>
 
-    {#{{ form(articleForm) }}#}
+        {{ form_start(articleForm) }}
+            {{ form_widget(articleForm) }}
 
-    {{ form_start(articleForm) }}
-        {{ form_widget(articleForm) }}
-
-        <button type="submit" class="btn btn-primary pull-right">Create</button>
-    {{ form_end(articleForm) }}
+            <button type="submit" class="btn btn-primary pull-right">Create</button>
+        {{ form_end(articleForm) }}
     </section>
 {% endblock %}

@@ -18,6 +18,16 @@ class Article
     private $id;
 
     /**
+     * @ORM\Column
+     */
+    private $title;
+
+    /**
+     * @ORM\Column
+     */
+    private $authorName;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $authorPicture;
@@ -52,81 +62,71 @@ class Article
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        return $this->title = $title;
+    }
+
+    public function getAuthorName()
+    {
+        return $this->authorName;
+    }
+
+    public function setAuthorName($authorName)
+    {
+        $this->authorName = $authorName;
+    }
+
     public function getAuthorPicture()
     {
         return $this->authorPicture;
     }
 
-    /**
-     * @param mixed $authorPicture
-     */
     public function setAuthorPicture($authorPicture)
     {
         $this->authorPicture = $authorPicture;
     }
 
-    /**
-     * @return mixed
-     */
     public function getAuthorPosition()
     {
         return $this->authorPosition;
     }
 
-    /**
-     * @param mixed $authorPosition
-     */
     public function setAuthorPosition($authorPosition)
     {
         $this->authorPosition = $authorPosition;
     }
 
-    /**
-     * @return mixed
-     */
     public function getAuthorTwitter()
     {
         return $this->authorTwitter;
     }
 
-    /**
-     * @param mixed $authorTwitter
-     */
     public function setAuthorTwitter($authorTwitter)
     {
         $this->authorTwitter = $authorTwitter;
     }
 
-    /**
-     * @return mixed
-     */
     public function getContent()
     {
         return $this->content;
     }
 
-    /**
-     * @param mixed $content
-     */
     public function setContent($content)
     {
         $this->content = $content;
     }
 
-    /**
-     * @return mixed
-     */
     public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param mixed $createdAt
-     */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;

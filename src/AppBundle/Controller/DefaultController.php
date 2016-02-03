@@ -2,9 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Article;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -17,11 +17,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/post", name="post")
+     * @Route("/post/{id}", name="post")
      */
-    public function postAction()
+    public function postAction(Article $article)
     {
-        return $this->render('AppBundle:default:post.html.twig');
+        return $this->render('AppBundle:default:post.html.twig', array('article' => $article));
     }
 
     /**
@@ -29,6 +29,8 @@ class DefaultController extends Controller
      */
     public function postsAction()
     {
-        return $this->render('AppBundle:default:posts.html.twig');
+        $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
+
+        return $this->render('AppBundle:default:posts.html.twig', array('articles' => $articles));
     }
 }

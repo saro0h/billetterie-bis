@@ -1,0 +1,68 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - List articles
+{% endblock %}
+
+{% block top %}
+    <section id="home">
+        <div id="main-slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" src="{{ asset('bundles/app/images/slider/bg4.jpg') }}" alt="slider">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock top %}
+
+{% block content %}
+    <section id="explore">
+
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.session.flashbag.get('error') %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endfor %}
+
+        <a href="{{ path('article_new') }}" class="btn btn-warning pull-right" role="button">Create a new article</a>
+
+        <h1>Articles list</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Created at</th>
+                    <th>Written by</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.createdAt|daste('l j M Y H:i:s') }}</td>
+                        <td>{{ article.authorName }}</td>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.content|truncate(50) }}…</td>
+                        <td>
+                            <a href="{{ path('article_update', { 'id': article.id }) }}" class="btn btn-info" role="button">Modify</a>
+
+                            <form action="{{ path('article_delete') }}" method="POST">
+                                <input type="hidden" id="form_id" name="article_id" class="form-control" value="{{ article.id }}" />
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('delete_article') }}" />
+
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    There is no article yet in database.
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
