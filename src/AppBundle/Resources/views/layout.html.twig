@@ -35,8 +35,8 @@
 
         {% block content '' %}
 
-        {{ include('AppBundle:contact:form.html.twig') }}
-
+        {# {{ include('AppBundle:contact:form.html.twig') }} #}
+        {{ render(controller('AppBundle:Contact:contact')) }}
 
         {{ include('AppBundle:includes:footer.html.twig') }}
 

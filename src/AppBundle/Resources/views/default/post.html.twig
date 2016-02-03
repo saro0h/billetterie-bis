@@ -21,28 +21,13 @@
         <div id="twitter-feed" class="carousel slide" data-interval="false">
             <div class="row">
                 <div class="post col-md-12">
-                    <h1>Blog post 1</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tempor sem nisl, vitae dapibus
-                        velit pretium eu. Sed a lorem id urna venenatis volutpat. Integer ac vestibulum mi. In erat nunc,
-                        blandit at augue nec, dignissim dapibus felis. Maecenas turpis elit, efficitur in tincidunt et,
-                        lobortis porta mauris. Praesent cursus pellentesque imperdiet. Aenean tincidunt consequat porttitor.
-                        Duis id tellus vitae nulla imperdiet varius eu eu enim.
-
-                        Morbi in viverra elit. Sed consequat nisi vitae diam convallis ultricies. Ut at dolor iaculis,
-                        sodales augue ut, euismod odio. Proin eget lorem volutpat, maximus urna volutpat, tristique nisl.
-                        Vestibulum ac risus placerat, mattis mi in, dignissim leo. Fusce eget pulvinar lectus. Vestibulum
-                        ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus ut odio et
-                        nibh fringilla varius id id mauris. Mauris sed ultrices quam. Ut varius euismod sapien, vitae
-                        bibendum diam. Sed tincidunt quam metus. Quisque non dapibus libero. Maecenas at bibendum lectus,
-                        vel viverra libero. Nullam faucibus semper ipsum eget luctus. Integer lorem quam, sodales tempus
-                        ultricies sit amet, dignissim quis enim. Sed vel mauris dictum diam aliquam facilisis non vel ante.
-                    </p>
+                    <h1>{{ article.title }}</h1>
+                    <p>{{ article.content|raw }}</p>
                 </div>
                 <div class="item">
-                    <img src="https://pbs.twimg.com/profile_images/443336758403424256/U5bzXI5l.jpeg" alt="">
-                    <p>Creator of the PHP framework Symfony</p>
-                    <a href="https://twitter.com/fabpot">Twitter account</a>
+                    <img src="{{ article.authorPicture }}" alt="{{ article.authorName }}">
+                    <p>{{ article.authorPosition }}</p>
+                    <a href="{{ article.authorTwitter }}">{{ article.authorName }}'s Twitter account</a>
                 </div>
             </div>
         </div>

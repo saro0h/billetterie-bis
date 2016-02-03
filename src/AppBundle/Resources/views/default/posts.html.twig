@@ -20,28 +20,17 @@
     <section id="twitter">
         <div id="twitter-feed" class="carousel slide" data-interval="false">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="blog-post ">
-                        <h2>Blog post 1</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur diam sem, tempor vitae enim quis, aliquet hendrerit arcu. Quisque sodales quis turpis sed maximus. Etiam molestie arcu vel placerat tincidunt. Nulla eget fermentum neque, aliquet maximus turpis. Phasellus dictum tempor facilisis.</p>
-                        <a href="{{ path('post') }}" class="btn btn-primary">See the whole post <i class="fa fa-angle-right"></i></a>
+                {% for article in articles %}
+                    <div class="col-md-6">
+                        <div class="blog-post ">
+                            <h2>{{ article.title }}</h2>
+                            <p>{{ article.content[0:50] }}…</p>
+                            <a href="{{ path('post', { 'id' : article.id}) }}" class="btn btn-primary">Read it <i class="fa fa-angle-right"></i></a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="blog-post ">
-                        <h2>Blog post 2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur diam sem, tempor vitae enim quis, aliquet hendrerit arcu. Quisque sodales quis turpis sed maximus. Etiam molestie arcu vel placerat tincidunt. Nulla eget fermentum neque, aliquet maximus turpis. Phasellus dictum tempor facilisis.</p>
-                        <a href="{{ path('post') }}" class="btn btn-primary">See the whole post <i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="blog-post ">
-                        <h2>Blog post 3</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur diam sem, tempor vitae enim quis, aliquet hendrerit arcu. Quisque sodales quis turpis sed maximus. Etiam molestie arcu vel placerat tincidunt. Nulla eget fermentum neque, aliquet maximus turpis. Phasellus dictum tempor facilisis.</p>
-                        <a href="{{ path('post') }}" class="btn btn-primary">See the whole post <i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
+                {% else %}
+                    Sorry there no blog post yet.
+                {% endfor %}
             </div>
         </div>
     </section>

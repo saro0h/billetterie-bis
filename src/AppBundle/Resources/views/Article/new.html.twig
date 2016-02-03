@@ -1,0 +1,35 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - {% if 'article_new' == app.request.get('_route') %}New{% else %}Update{% endif %} article
+{% endblock %}
+
+{% block top %}
+    <section id="home">
+        <div id="main-slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" src="{{ asset('bundles/app/images/slider/bg4.jpg') }}" alt="slider">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock top %}
+
+{% block content %}
+    <section id="explore">
+        {% for message in app.session.flashbag.get('success') %}
+            {{ message }}
+        {% endfor %}
+
+        <a href="{{ path('article_list') }}" class="btn btn-info pull-right" role="button">Back to the list</a>
+
+        <h1>{% if 'article_new' == app.request.get('_route') %}Create{% else %}Update{% endif %} a new article</h1>
+
+        {{ form_start(articleForm) }}
+            {{ form_widget(articleForm) }}
+
+            <button type="submit" class="btn btn-primary pull-right">Create</button>
+        {{ form_end(articleForm) }}
+    </section>
+{% endblock %}
