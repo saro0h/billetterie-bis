@@ -34,8 +34,8 @@
                             <a href="#about">About</a>
                         </li>
                         {% endif %}
-                        <li>
-                            <a class="no-scroll" href="#" target="_blank">PURCHASE TICKETS</a>
+                        <li class="{% if 'buytickets' == app.request.get('_route') %}active{% endif %}">
+                            <a class="no-scroll" href="{{ path('buytickets') }}">PURCHASE TICKETS</a>
                         </li>
                         <li class="scroll">
                             <a href="#contact">Contact</a>
