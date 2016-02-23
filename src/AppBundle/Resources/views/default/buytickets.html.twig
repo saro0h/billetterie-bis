@@ -1,0 +1,49 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Purchase Tickets
+{% endblock title %}
+
+{% block top %}
+    <section id="home">
+        <div id="main-slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" src="{{ asset('bundles/app/images/slider/bg4.jpg') }}" alt="slider">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock top %}
+
+{% block content %}
+    <section id="twitter">
+        <div id="twitter-feed" class="carousel slide" data-interval="false">
+            <div class="row">
+                {% for concert in concerts %}
+                    <div class="col-md-6">
+                        <div class="blog-post ">
+                            <h2>Name of the Concert :{{ concert.nom }}</h2>
+                            <p>Price:{{ concert.prix }}</p>
+                            <p>Place(s)Available:{{ concert.nbrPlace }} </p>
+                            <p>Choose no. of place(s)
+                            <select>
+                                {% for nbrPlace in range(1,concert.nbrPlace) %}
+                                    <option value="{{ nbrPlace }}">{{ nbrPlace }}</option>
+                                {% endfor %}
+                            </select></p>
+                            <p>no.:{{ concert.numAddress }}</p>
+                            <p>Street1:{{ concert.street1 }}</p>
+                            <p>Street2:{{ concert.street2 }}</p>
+                            <p>Zipcode:{{ concert.zipcode }}</p>
+                            <p>city:{{ concert.city }}</p>
+                            <a href="{{ path('buy', { 'id' : concert.id}) }}" class="btn btn-primary">Buy <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                {% else %}
+                    Sorry there is no concert yet.
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

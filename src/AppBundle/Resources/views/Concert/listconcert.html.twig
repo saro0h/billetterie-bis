@@ -1,0 +1,75 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - List concerts
+{% endblock %}
+
+{% block top %}
+    <section id="home">
+        <div id="main-slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" src="{{ asset('bundles/app/images/slider/bg4.jpg') }}" alt="slider">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock top %}
+
+{% block content %}
+    <section id="explore">
+
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.session.flashbag.get('error') %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endfor %}
+
+        <a href="{{ path('concert_new') }}" class="btn btn-warning pull-right" role="button">Create a new concert</a>
+
+        <h1>Concerts list</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nom du concert</th>
+                    <th>Prix</th>
+                    <th>Nbr de place(s)</th>
+                    <th>NumeroAdresse</th>
+                    <th>Street1</th>
+                    <th>Street2</th>
+                    <th>CodePostale</th>
+                    <th>Ville</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for concert in concerts %}
+                    <tr>
+                        <td>{{ concert.nom }}</td>
+                        <td>{{ concert.prix }}</td>
+                        <td>{{ concert.nbrPlace }}</td>
+                        <td>{{ concert.numAddress }}</td>
+                        <td>{{ concert.street1 }}</td>
+                        <td>{{ concert.street2 }}…</td>
+                        <td>{{ concert.zipcode }}…</td>
+                        <td>{{ concert.city }}…</td>
+                        <td>
+                            <a href="{{ path('concert_update', { 'id': concert.id }) }}" class="btn btn-info" role="button">Modify</a>
+
+                            <form action="{{ path('concert_delete') }}" method="POST">
+                                <input type="hidden" id="form_id" name="concert_id" class="form-control" value="{{ concert.id }}" />
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('delete_concert') }}" />
+
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    There is no concert yet in database.
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

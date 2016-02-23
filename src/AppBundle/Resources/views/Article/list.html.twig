@@ -44,7 +44,7 @@
             <tbody>
                 {% for article in articles %}
                     <tr>
-                        <td>{{ article.createdAt|daste('l j M Y H:i:s') }}</td>
+                        <td>{{ article.createdAt|date('l j M Y H:i:s') }}</td>
                         <td>{{ article.authorName }}</td>
                         <td>{{ article.title }}</td>
                         <td>{{ article.content|truncate(50) }}…</td>

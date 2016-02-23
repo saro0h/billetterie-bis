@@ -11,10 +11,12 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('title')
+            ->add('authorName')    
             ->add('authorPicture')
             ->add('authorPosition')
             ->add('authorTwitter')
-            ->add('content')
+            ->add('content',null,array('attr'=>array('class'=>'ckeditor')))
         ;
     }
 }
